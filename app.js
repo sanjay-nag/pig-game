@@ -39,12 +39,21 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 	if(gamePlaying){
 		//1. Add Current score to global score
 		scores[activePlayer] += roundScore; 
-	
-		//2. Update the UI
-		document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer]
+
+		//2.Update the UI
+		document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
+
+		//Using Final Score input by user
+		var finalScore = document.querySelector('.final-score').value;
+		var winningScore;
+		if(finalScore) {	//Type coersion
+			winningScore = finalScore;
+		} else {
+			winningScore = 100;
+		}
 	
 		//3. Check if player won the game
-		if(scores[activePlayer] >= 100) {
+		if(scores[activePlayer] >= winningScore) {
 			document.getElementById('name-' + activePlayer).textContent = 'Winner!';
 			document.querySelector('.dice').style.display = 'none';
 			document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
